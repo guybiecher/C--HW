@@ -139,7 +139,7 @@ namespace Ex03.ConsoleUI
 
             if (isVehicleListed)
             {
-                m_Garage.InflateWheelsToMax();
+                m_Garage.InflateWheelsToMax(licenseNumber);
             }
             else
             {
@@ -172,7 +172,8 @@ namespace Ex03.ConsoleUI
 
         private void ShowRegisteredVehicles()
         {
-            throw new NotImplementedException();
+            string filter = UI.GetFilterInput();
+            UI.ShowAllRegisteredVehicles(m_Garage.getAllLicenseNumbers(filter));
         }
 
         private void CarCheckIn()

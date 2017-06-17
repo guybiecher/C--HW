@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Ex03.GarageLogic
 {
@@ -16,12 +17,14 @@ namespace Ex03.GarageLogic
             return m_VechicleRecords.ContainsKey(i_LicenseNumber);
         }
 
-        public List<string> getAllLicenseNumbers(eVehicleStatus filterByVechicleStatus ,bool i_UseFilter)
+        public List<string> getAllLicenseNumbers(string filterByVechicleStatus)
         {
+            //TODO: מחקתי את הפונקציה עם החתימה הריקה והורדתי את המשתנה הבוליאני שלך, אם אין פילטר אתה פשוט תקבל null
+            bool useFilter = (filterByVechicleStatus == null) ? false : true;
            List<string> allCarsLicenseNumbers = new List<string>(); 
            foreach (KeyValuePair<string, VechicleRecord> vechicle in m_VechicleRecords)
             {
-                if (!i_UseFilter || vechicle.Value.VehicleStatus.Equals(filterByVechicleStatus))
+                if (!useFilter || vechicle.Value.VehicleStatus.Equals(filterByVechicleStatus))
                 {
                     allCarsLicenseNumbers.Add(vechicle.Key);
                 }
@@ -29,7 +32,7 @@ namespace Ex03.GarageLogic
             return allCarsLicenseNumbers;
         }
 
-        public void ChangeCarStatus(string i_LicenseNumber, eVehicleStatus i_VechileNewStatus)
+        public void ChangeVehicleStatus(string i_LicenseNumber, eVehicleStatus i_VechileNewStatus)
         {
             m_VechicleRecords[i_LicenseNumber].VehicleStatus = i_VechileNewStatus;
         }
@@ -39,6 +42,19 @@ namespace Ex03.GarageLogic
             //m_VechicleRecords[i_LicenseNumber].Vehicle.Wheels. 
         }
 
+        public void ChargeVehicle(string licenseNumber, float chargeAmmountInMinutes)
+        {
+            throw new NotImplementedException();
+        }
 
+        public object GetVehicleRecord(string licenseNumber)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void FuelUpVehicle(string licenseNumber, float fuelAmmountToAdd, string fuelType)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

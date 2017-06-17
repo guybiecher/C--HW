@@ -61,9 +61,44 @@ namespace Ex03.ConsoleUI
             return null;
         }
 
+        internal static void ShowVehicleDetails(object v)
+        {
+            throw new NotImplementedException();
+        }
+
         internal static void NoRecordFound()
         {
             Console.WriteLine("No records with that license number found in the garage"); ;
+        }
+
+        internal static float GetChargeAmmountInput()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void ShowAllRegisteredVehicles(List<string> list)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static string GetVehicleStateInput()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static string GetFuelTypeInput()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static float GetFuelAmmountInput()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static string GetFilterInput()
+        {
+            throw new NotImplementedException();
         }
     }
 }

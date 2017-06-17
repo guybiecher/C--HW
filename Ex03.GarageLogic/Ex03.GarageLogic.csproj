@@ -46,7 +46,6 @@
     <Compile Include="Garage.cs" />
     <Compile Include="FuelEngine.cs" />
     <Compile Include="Motorcycle.cs" />
-    <Compile Include="CarRecord.cs" />
     <Compile Include="Truck.cs" />
     <Compile Include="ValueOutOfRangeExpection.cs" />
     <Compile Include="Vehicle.cs" />

@@ -17,12 +17,12 @@ namespace Ex03.GarageLogic
 
         public string Model { get => m_Model; set => m_Model = value; }
         public string LicenseNumber { get => m_LicenseNumber; set => m_LicenseNumber = value; }
-        internal Engine Engine { get => m_Engine; set => m_Engine = value; }
+        public Engine Engine { get => m_Engine; set => m_Engine = value; }
         public float EnergyLevel { get => m_EnergyLevel; set => m_EnergyLevel = value; }
         public ArrayList Wheels { get => m_Wheels; set => m_Wheels = value; }
         
 
-        public Vehicle(string i_Model, string i_LicenseNumber,Engine i_Engine, float i_EnergyLevel, ArrayList i_Wheels)
+        public Vehicle(string i_Model ,string i_LicenseNumber ,Engine i_Engine ,float i_EnergyLevel ,ArrayList i_Wheels)
         {
             this.m_Model = i_Model;
             this.m_LicenseNumber = i_LicenseNumber;
@@ -30,6 +30,7 @@ namespace Ex03.GarageLogic
             this.m_EnergyLevel = i_EnergyLevel;
             this.Wheels = i_Wheels;
         }
+
 
 
     }

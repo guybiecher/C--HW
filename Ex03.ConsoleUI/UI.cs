@@ -44,5 +44,26 @@ namespace Ex03.ConsoleUI
 
             return userInput;
         }
+
+        public static string GetLicenseNumberInput ()
+        {
+            Console.WriteLine("Please insert a license number");
+            string userInput = Console.ReadLine();
+            bool isValidInput = InputUtils.IsValidLicenseNumber(userInput);
+
+            while (!isValidInput)
+            {
+                Console.WriteLine("Invalid license number, please try again");
+                userInput = Console.ReadLine();
+                isValidInput = InputUtils.IsValidLicenseNumber(userInput);
+            }
+
+            return null;
+        }
+
+        internal static void NoRecordFound()
+        {
+            Console.WriteLine("No records with that license number found in the garage"); ;
+        }
     }
 }

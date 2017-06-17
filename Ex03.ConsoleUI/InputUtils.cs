@@ -31,6 +31,11 @@ namespace Ex03.ConsoleUI
             }
 
             return result;
-        } 
+        }
+
+        internal static bool IsValidLicenseNumber(string userInput)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

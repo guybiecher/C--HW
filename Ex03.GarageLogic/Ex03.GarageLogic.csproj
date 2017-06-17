@@ -46,10 +46,11 @@
     <Compile Include="Garage.cs" />
     <Compile Include="Motorcycle.cs" />
     <Compile Include="Truck.cs" />
-    <Compile Include="ValueOutOfRangeExpection.cs" />
+    <Compile Include="ValueOutOfRangeException.cs" />
     <Compile Include="Vehicle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VehicleFactory.cs" />
+    <Compile Include="VehicleRecord.cs" />
     <Compile Include="Wheel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

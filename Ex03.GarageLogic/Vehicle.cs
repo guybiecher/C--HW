@@ -33,6 +33,11 @@ namespace Ex03.GarageLogic
             return wheels;
         }
 
+        public void InflateWheelsToMax()
+        {
+
+        }
+
 
 
     }

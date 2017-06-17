@@ -4,15 +4,19 @@ namespace Ex03.GarageLogic
 {
     public class Garage
     {
-        private static Dictionary<string, VechicleRecord> m_VechicleRecords = new Dictionary<string, VechicleRecord>();
+        private static Dictionary<string, VechicleRecord> m_VechicleRecords = null;
 
- 
-        public static bool IsVehicleListed(string i_LicenseNumber)
+        public Garage()
+        {
+            m_VechicleRecords = new Dictionary<string, VechicleRecord>();
+        }
+
+        public bool IsVehicleListed(string i_LicenseNumber)
         {
             return m_VechicleRecords.ContainsKey(i_LicenseNumber);
         }
 
-        public static List<string> getAllLicenseNumbers(eVehicleStatus filterByVechicleStatus ,bool i_UseFilter)
+        public List<string> getAllLicenseNumbers(eVehicleStatus filterByVechicleStatus ,bool i_UseFilter)
         {
            List<string> allCarsLicenseNumbers = new List<string>(); 
            foreach (KeyValuePair<string, VechicleRecord> vechicle in m_VechicleRecords)
@@ -25,19 +29,14 @@ namespace Ex03.GarageLogic
             return allCarsLicenseNumbers;
         }
 
-        public static void ChangeCarStatus(string i_LicenseNumber, eVehicleStatus i_VechileNewStatus)
+        public void ChangeCarStatus(string i_LicenseNumber, eVehicleStatus i_VechileNewStatus)
         {
             m_VechicleRecords[i_LicenseNumber].VehicleStatus = i_VechileNewStatus;
         }
 
-        public static void ChangeCarStatus(string i_LicenseNumber, eVehicleStatus i_VechileNewStatus)
+        public void InflateWheelsToMax(string i_LicenseNumber)
         {
-            m_VechicleRecords[i_LicenseNumber].VehicleStatus = i_VechileNewStatus;
-        }
-
-        public static void InflateWheelsToMax(string i_LicenseNumber)
-        {
-            //m_VechicleRecords[i_LicenseNumber].Vehicle.
+            //m_VechicleRecords[i_LicenseNumber].Vehicle.Wheels. 
         }
 
 

@@ -26,7 +26,7 @@ namespace Ex03.GarageLogic
             m_VehicleOwnerName = i_VehicleOwnerName;
             m_VehicleOwnerPhoneNum = i_VehicleOwnerPhoneNum;
             VehicleStatus = i_VehicleStatus;
-            Vehicle = i_Vehicle;
+            m_Vehicle = i_Vehicle;
         }
 
         

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ex03.GarageLogic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,12 +10,12 @@ namespace Ex03.ConsoleUI
     internal class GarageManager
     {
         private bool m_ExitGarage;
-        private GarageLogic.Garage m_Garage;
+        private Garage m_Garage;
 
         public GarageManager ()
         {
             this.m_ExitGarage = false;
-            this.m_Garage = new GarageLogic.Garage();
+            this.m_Garage = new Garage();
         }
 
         public void start ()
@@ -39,7 +40,7 @@ namespace Ex03.ConsoleUI
                     ShowRegisteredVehicles();
                     break;
                 case "3":
-                    ChangeCarStatus();
+                    ChangeVehicleStatus();
                     break;
                 case "4":
                     InflateWeels();
@@ -66,27 +67,107 @@ namespace Ex03.ConsoleUI
 
         private void ShowVehicleDetails()
         {
-            UI.ShowVehicleDetails(this.m_)
+            string licenseNumber = UI.GetLicenseNumberInput();
+            bool isVehicleListed = m_Garage.IsVehicleListed(licenseNumber);
+
+            if (isVehicleListed)
+            {
+                UI.ShowVehicleDetails(m_Garage.GetVehicleRecord(licenseNumber));
+            }
+            else
+            {
+                UI.NoRecordFound();
+            }
         }
 
         private void ChargeVehicle()
         {
-            throw new NotImplementedException();
+            string licenseNumber = UI.GetLicenseNumberInput();
+            float chargeAmmountInMinutes = UI.GetChargeAmmountInput();
+            bool isVehicleListed = m_Garage.IsVehicleListed(licenseNumber);
+
+            if (isVehicleListed)
+            {
+                try
+                {
+                    m_Garage.ChargeVehicle(licenseNumber, chargeAmmountInMinutes);
+                } catch (ValueOutOfRangeException valueOutOfRangeException)
+                {
+                    Console.WriteLine(valueOutOfRangeException.Message);
+                    ChargeVehicle();
+                }
+            }
+            else
+            {
+                UI.NoRecordFound();
+            }
         }
 
         private void FuelVehicle()
         {
-            throw new NotImplementedException();
+            string licenseNumber = UI.GetLicenseNumberInput();
+            string fuelType = UI.GetFuelTypeInput();
+            float fuelAmmountToAdd = UI.GetFuelAmmountInput();
+            bool isVehicleListed = m_Garage.IsVehicleListed(licenseNumber);
+
+            if (isVehicleListed)
+            {
+                try
+                {
+                    m_Garage.FuelUpVehicle(licenseNumber, fuelAmmountToAdd, fuelType);
+                }
+                catch (ValueOutOfRangeException valueOutOfRangeException)
+                {
+                    Console.WriteLine(valueOutOfRangeException.Message);
+                    FuelVehicle();
+                } catch (ArgumentException argumentException)
+                {
+                    Console.WriteLine(argumentException.Message);
+                    FuelVehicle();
+                }
+            }
+            else
+            {
+                UI.NoRecordFound();
+            }
         }
 
         private void InflateWeels()
         {
-            throw new NotImplementedException();
+            string licenseNumber = UI.GetLicenseNumberInput();
+            bool isVehicleListed = m_Garage.IsVehicleListed(licenseNumber);
+
+            if (isVehicleListed)
+            {
+                m_Garage.InflateWheelsToMax();
+            }
+            else
+            {
+                UI.NoRecordFound();
+            }
         }
 
-        private void ChangeCarStatus()
+        private void ChangeVehicleStatus()
         {
-            throw new NotImplementedException();
+            string licenseNumber = UI.GetLicenseNumberInput();
+            string vehicleState = UI.GetVehicleStateInput();
+            bool isVehicleListed = m_Garage.IsVehicleListed(licenseNumber);
+
+            if (isVehicleListed)
+            {
+                try
+                {
+                    m_Garage.ChangeVehicleStatus(licenseNumber, vehicleState);
+                } catch (ArgumentException argumentException)
+                {
+                    Console.WriteLine(argumentException.Message);
+                    ChangeVehicleStatus();
+                }
+            }
+            else
+            {
+                UI.NoRecordFound();
+            }
         }
 
         private void ShowRegisteredVehicles()

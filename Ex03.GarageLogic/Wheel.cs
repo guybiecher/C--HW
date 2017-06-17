@@ -28,7 +28,7 @@ namespace Ex03.GarageLogic
                 m_AirPreasure = expectedAirPreasure;
             } else
             {
-                throw new ValueOutOfRangeExpection(k_MinAirPreasure,m_MaxAirPreasure);
+                throw new ValueOutOfRangeException(k_MinAirPreasure,m_MaxAirPreasure);
             }
         }
     }

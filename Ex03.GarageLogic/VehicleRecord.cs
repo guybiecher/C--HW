@@ -6,21 +6,29 @@ using System.Threading.Tasks;
 
 namespace Ex03.GarageLogic
 {
-    enum eVehicleStatus { Repair, Repaired, Paid }
+    public enum eVehicleStatus { Repair, Repaired, Paid }
 
-    class CarRecord
+    public class VechicleRecord
     {
-        private string m_VehicleOwnerName;
-        private string m_VehicleOwnerPhoneNum;
+        private readonly string m_VehicleOwnerName;
+        private readonly string m_VehicleOwnerPhoneNum;
         private eVehicleStatus m_VehicleStatus;
         private Vehicle m_Vehicle;
 
-        public CarRecord (string i_VehicleOwnerName, string i_VehicleOwnerPhoneNum, string i_VehicleStatus, Vehicle i_Vehicle)
+        public string VehicleOwnerName => m_VehicleOwnerName;
+        public string VehicleOwnerPhoneNum => m_VehicleOwnerPhoneNum;
+
+        public eVehicleStatus VehicleStatus { get => m_VehicleStatus; set => m_VehicleStatus = value; }
+        public Vehicle Vehicle { get => m_Vehicle;}
+
+        public VechicleRecord (string i_VehicleOwnerName, string i_VehicleOwnerPhoneNum, eVehicleStatus i_VehicleStatus, Vehicle i_Vehicle)
         {
             m_VehicleOwnerName = i_VehicleOwnerName;
             m_VehicleOwnerPhoneNum = i_VehicleOwnerPhoneNum;
-            m_VehicleStatus = (eVehicleStatus)Enum.Parse(typeof(eVehicleStatus), i_VehicleStatus);
-            m_Vehicle = i_Vehicle;
+            VehicleStatus = i_VehicleStatus;
+            Vehicle = i_Vehicle;
         }
+
+        
     }
 }

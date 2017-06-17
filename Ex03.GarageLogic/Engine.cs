@@ -23,7 +23,7 @@ namespace Ex03.GarageLogic
             float totalFuel = i_AmountOfEnergyToAdd + m_EnergyLevel;
             if (totalFuel >= m_MaxEnergyLevel)
             {
-                throw new ValueOutOfRangeExpection(k_MinEnergyLevel, m_MaxEnergyLevel);
+                throw new ValueOutOfRangeException(k_MinEnergyLevel, m_MaxEnergyLevel);
             }
             m_EnergyLevel = totalFuel;
 

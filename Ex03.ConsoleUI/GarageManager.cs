@@ -40,7 +40,7 @@ namespace Ex03.ConsoleUI
                     ShowRegisteredVehicles();
                     break;
                 case "3":
-                    ChangeCarStatus();
+                    ChangeVehicleStatus();
                     break;
                 case "4":
                     InflateWeels();

@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Ex03.GarageLogic
 {
-    class Wheel
+    public class Wheel
     {
+        private const float k_MinAirPreasure = 0;
         private string m_Manufacturer;
         private float m_AirPreasure;
         private float m_MaxAirPreasure;
@@ -19,7 +20,7 @@ namespace Ex03.GarageLogic
             this.m_MaxAirPreasure = i_maxAirPreasure;
         }
 
-        public void inflateWheel (float i_airToAdd)
+        public void InflateWheel (float i_airToAdd)
         {
             float expectedAirPreasure = m_AirPreasure + i_airToAdd;
             if (expectedAirPreasure <= m_MaxAirPreasure)
@@ -27,7 +28,7 @@ namespace Ex03.GarageLogic
                 m_AirPreasure = expectedAirPreasure;
             } else
             {
-                throw new Exception("Air preassure too high, can't inflate that much!");
+                throw new ValueOutOfRangeException(k_MinAirPreasure,m_MaxAirPreasure);
             }
         }
     }

@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Collections;
 
 namespace Ex03.GarageLogic
 {
-    enum eColor {
+    enum eCarColor {
         Blue,
         White,
         Yellow,
@@ -21,18 +17,26 @@ namespace Ex03.GarageLogic
         FiveDoors = 5
     }
    
-
     class Car : Vehicle
     {
-        private eColor m_Color;
-        private int m_NumOfDoors;
+        private const int k_NumberOfWheels = 4;
+        private const float k_MaxWheelPressure = 33f;
+
+
+        private eCarColor m_Color;
+        private eNumberOfDoors m_NumOfDoors;
         private Engine m_Engine;
 
-        public Car (string i_Color,Engine i_Engine,int i_NumofDoors, string i_Model, string i_LicenseNumber, float i_EnergyLevel, ArrayList i_Wheels) :
-            base(i_Model, i_LicenseNumber, i_Engine, i_EnergyLevel, i_Wheels)
+        public Car (eCarColor i_Color,Engine i_Engine,eNumberOfDoors i_NumofDoors, string i_Model, string i_LicenseNumber, List<Wheel> i_Wheels) :
+            base(i_Model, i_LicenseNumber, i_Engine, i_Wheels)
         {
-            m_Color = (eColor)Enum.Parse(typeof(eColor), i_Color); 
+            m_Color = i_Color; 
             m_NumOfDoors = i_NumofDoors;
+        }
+
+        public static List<Wheel> CreateCarWheels(string i_Manufacturer, float i_AirPreasure)
+        {
+            return CreateWheels(k_NumberOfWheels, i_Manufacturer, i_AirPreasure,k_MaxWheelPressure);
         }
 
     }

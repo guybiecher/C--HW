@@ -133,5 +133,10 @@ namespace Ex03.ConsoleUI
 
             return InputUtils.CheckFilterChoice(userInput);
         }
+
+        internal static void ShowVehicleNewState(string i_VehicleState)
+        {
+            Console.WriteLine("Vehicle new state is: " + i_VehicleState);
+        }
     }
 }

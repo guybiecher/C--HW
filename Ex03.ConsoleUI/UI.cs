@@ -138,5 +138,34 @@ namespace Ex03.ConsoleUI
         {
             Console.WriteLine("Vehicle new state is: " + i_VehicleState);
         }
+
+        internal static string GetOwnerNameInput()
+        {
+            Console.WriteLine("Please type in a your name");
+            return Console.ReadLine();
+        }
+
+        internal static string GetOwnerPhoneNumber()
+        {
+            Console.WriteLine("Please type in you phone number");
+            return Console.ReadLine();
+        }
+
+        internal static string GetVehicleTypeInput(List<string> i_SupportedVehiclesList)
+        {
+            StringBuilder vehicleTypes = new StringBuilder();
+            foreach (string vehicleType in i_SupportedVehiclesList)
+            {
+                vehicleTypes.Append(vehicleType + "\r\n");
+            }
+            Console.WriteLine("Please type in you vehicle type according to one of the types listed below:\r\n{0}", vehicleTypes);
+            return Console.ReadLine();
+        }
+
+        internal static string GetGeneralInput(string i_Field, string i_VehicleType)
+        {
+            Console.WriteLine("Please type in your {0} {1}", i_VehicleType, i_Field);
+            return Console.ReadLine();
+        }
     }
 }

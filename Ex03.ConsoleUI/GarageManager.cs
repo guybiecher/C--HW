@@ -12,13 +12,13 @@ namespace Ex03.ConsoleUI
         private bool m_ExitGarage;
         private Garage m_Garage;
 
-        public GarageManager ()
+        public GarageManager()
         {
             this.m_ExitGarage = false;
             this.m_Garage = new Garage();
         }
 
-        public void start ()
+        public void start()
         {
             UI.Initiate();
             UI.ShowGarageActions();
@@ -57,7 +57,7 @@ namespace Ex03.ConsoleUI
                 case "8":
                     ExitGarage();
                     break;
-            }   
+            }
         }
 
         private void ExitGarage()
@@ -91,7 +91,8 @@ namespace Ex03.ConsoleUI
                 try
                 {
                     m_Garage.ChargeVehicle(licenseNumber, chargeAmmountInMinutes);
-                } catch (ValueOutOfRangeException valueOutOfRangeException)
+                }
+                catch (ValueOutOfRangeException valueOutOfRangeException)
                 {
                     Console.WriteLine(valueOutOfRangeException.Message);
                     ChargeVehicle();
@@ -120,7 +121,8 @@ namespace Ex03.ConsoleUI
                 {
                     Console.WriteLine(valueOutOfRangeException.Message);
                     FuelVehicle();
-                } catch (ArgumentException argumentException)
+                }
+                catch (ArgumentException argumentException)
                 {
                     Console.WriteLine(argumentException.Message);
                     FuelVehicle();
@@ -158,7 +160,8 @@ namespace Ex03.ConsoleUI
                 try
                 {
                     m_Garage.ChangeVehicleStatus(licenseNumber, vehicleState);
-                } catch (ArgumentException argumentException)
+                }
+                catch (ArgumentException argumentException)
                 {
                     Console.WriteLine(argumentException.Message);
                     ChangeVehicleStatus();
@@ -189,8 +192,25 @@ namespace Ex03.ConsoleUI
             }
             else
             {
-
+                string ownerName = UI.GetOwnerNameInput();
+                string ownerPhoneNumber = UI.GetOwnerPhoneNumber();
+                string vehicleType = UI.GetVehicleTypeInput(m_Garage.GetSupportedVehiclesList());
+                List<string> requiredFieldsList = m_Garage.GetFieldsByVehicleType(vehicleType);
+                Dictionary<string, string> requiredFieldsMap = GenerateMapAccordingToList(requiredFieldsList, vehicleType);
+                m_Garage.AddVehicle(licenseNumber, ownerName, ownerPhoneNumber, new Vehicle(requiredFieldsMap, vehicleType));
             }
+        }
+
+        private Dictionary<string, string> GenerateMapAccordingToList(List<string> i_RequiredFieldsList, string i_VehicleType)
+        {
+            Dictionary<string, string> result = new Dictionary<string, string>();
+
+            foreach (string field in i_RequiredFieldsList)
+            {
+                result.Add(field, UI.GetGeneralInput(field, i_VehicleType));
+            }
+
+            return result;
         }
     }
 }

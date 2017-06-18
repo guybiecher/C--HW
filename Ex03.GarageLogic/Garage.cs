@@ -18,10 +18,9 @@ namespace Ex03.GarageLogic
             return m_VechicleRecords.ContainsKey(i_LicenseNumber);
         }
 
-        public void AddVehicle(string i_LicenseNumber, string i_VehicleOwnerName, string i_VehicleOwnerPhoneNum, string i_VehicleStatus, Vehicle i_Vehicle)
+        public void AddVehicle(string i_LicenseNumber, string i_VehicleOwnerName, string i_VehicleOwnerPhoneNum, Vehicle i_Vehicle)
         {
-            eVehicleStatus vehicleStatusParsedToEnum = (eVehicleStatus)Enum.Parse(typeof(eVehicleStatus), i_VehicleStatus);
-            VechicleRecord vechicleRecord = new VechicleRecord(i_VehicleOwnerName, i_VehicleOwnerPhoneNum, vehicleStatusParsedToEnum, i_Vehicle);
+            VechicleRecord vechicleRecord = new VechicleRecord(i_VehicleOwnerName, i_VehicleOwnerPhoneNum, eVehicleStatus.Repair, i_Vehicle);
             m_VechicleRecords.Add(i_LicenseNumber, vechicleRecord);
         }
 
@@ -68,6 +67,16 @@ namespace Ex03.GarageLogic
             FuelEngine fuelEngine = m_VechicleRecords[licenseNumber].Vehicle.Engine as FuelEngine;
             eFuelType fuelTypeParsedToEnum = (eFuelType)Enum.Parse(typeof(eFuelType), fuelType);
             fuelEngine.FillFuel(fuelAmmountToAdd, fuelTypeParsedToEnum);
+        }
+
+        public List<string> GetFieldsByVehicleType (string i_VehicleType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<string> GetSupportedVehiclesList()
+        {
+            throw new NotImplementedException();
         }
     }
 }

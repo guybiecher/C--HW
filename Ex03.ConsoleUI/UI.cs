@@ -9,13 +9,13 @@ namespace Ex03.ConsoleUI
     internal class UI
     {
 
-        public static void Initiate ()
+        public static void Initiate()
         {
             Console.WriteLine("Wellcome to our garage!!");
             Console.WriteLine("How can I help you today?");
         }
 
-        public static void ShowGarageActions ()
+        public static void ShowGarageActions()
         {
             Console.WriteLine("Please choose one of the actions below by typing the number next to the action:");
             Console.WriteLine(
@@ -45,9 +45,9 @@ namespace Ex03.ConsoleUI
             return userInput;
         }
 
-        public static string GetLicenseNumberInput ()
+        public static string GetLicenseNumberInput()
         {
-            Console.WriteLine("Please insert a license number");
+            Console.WriteLine("Please type in a license number");
             string userInput = Console.ReadLine();
             bool isValidInput = InputUtils.IsValidLicenseNumber(userInput);
 
@@ -58,7 +58,7 @@ namespace Ex03.ConsoleUI
                 isValidInput = InputUtils.IsValidLicenseNumber(userInput);
             }
 
-            return null;
+            return userInput;
         }
 
         internal static void ShowVehicleDetails(object v)
@@ -73,32 +73,63 @@ namespace Ex03.ConsoleUI
 
         internal static float GetChargeAmmountInput()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Please type in the ammount of energy to charge in minutes");
+            string userInput = Console.ReadLine();
+            float parsedInput;
+            bool isValidInput = float.TryParse(userInput, out parsedInput);
+
+            while (!isValidInput)
+            {
+                Console.WriteLine("Invalid charge ammount input, please try again");
+                userInput = Console.ReadLine();
+                isValidInput = float.TryParse(userInput, out parsedInput);
+            }
+
+            return parsedInput;
         }
 
-        internal static void ShowAllRegisteredVehicles(List<string> list)
+        internal static void ShowAllRegisteredVehicles(List<string> i_LicenseNumbersList)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Here are the license numbers of the vehicles registered in the garage:");
+            foreach (string record in i_LicenseNumbersList)
+            {
+                Console.WriteLine(record);
+            }
         }
 
         internal static string GetVehicleStateInput()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Please type in the vehicles new state");
+            return Console.ReadLine();
         }
 
         internal static string GetFuelTypeInput()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Please type in a gas type");
+            return Console.ReadLine();
         }
 
         internal static float GetFuelAmmountInput()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Please type in the ammount of gas to fill");
+            string userInput = Console.ReadLine();
+            float parsedInput;
+            bool isValidInput = float.TryParse(userInput, out parsedInput);
+
+            while (!isValidInput)
+            {
+                Console.WriteLine("Invalid fuel ammount input, please try again");
+                userInput = Console.ReadLine();
+                isValidInput = float.TryParse(userInput, out parsedInput);
+            }
+
+            return parsedInput;
         }
 
         internal static string GetFilterInput()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Please type in a vehicles state to filter by, if you don't wish to filter, simply hit enter with no value typed in");
+            return Console.ReadLine();
         }
     }
 }

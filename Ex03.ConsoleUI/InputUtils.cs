@@ -8,7 +8,9 @@ namespace Ex03.ConsoleUI
 {
     internal class InputUtils
     {
-        public static bool IsValidActionChoice (string i_Input)
+        internal const string k_NoFilter = "NO FILTER";
+
+        public static bool IsValidActionChoice(string i_Input)
         {
             bool result;
             int parsedInput;
@@ -36,6 +38,11 @@ namespace Ex03.ConsoleUI
         internal static bool IsValidLicenseNumber(string userInput)
         {
             throw new NotImplementedException();
+        }
+
+        internal static string CheckFilterChoice(string i_UserInput)
+        {
+            return i_UserInput == "" ? k_NoFilter : i_UserInput;
         }
     }
 }

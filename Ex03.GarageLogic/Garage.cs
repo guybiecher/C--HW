@@ -7,7 +7,7 @@ namespace Ex03.GarageLogic
     {
         private const float k_ParseMinuteToHours = 60f;
         private static Dictionary<string, VechicleRecord> m_VechicleRecords = null;
-        
+
         public Garage()
         {
             m_VechicleRecords = new Dictionary<string, VechicleRecord>();
@@ -18,7 +18,7 @@ namespace Ex03.GarageLogic
             return m_VechicleRecords.ContainsKey(i_LicenseNumber);
         }
 
-        public void AddVehicle(string i_LicenseNumber , string i_VehicleOwnerName, string i_VehicleOwnerPhoneNum, string i_VehicleStatus, Vehicle i_Vehicle)
+        public void AddVehicle(string i_LicenseNumber, string i_VehicleOwnerName, string i_VehicleOwnerPhoneNum, string i_VehicleStatus, Vehicle i_Vehicle)
         {
             eVehicleStatus vehicleStatusParsedToEnum = (eVehicleStatus)Enum.Parse(typeof(eVehicleStatus), i_VehicleStatus);
             VechicleRecord vechicleRecord = new VechicleRecord(i_VehicleOwnerName, i_VehicleOwnerPhoneNum, vehicleStatusParsedToEnum, i_Vehicle);
@@ -27,9 +27,11 @@ namespace Ex03.GarageLogic
 
         public List<string> GetAllLicenseNumbers(string filterByVechicleStatus)
         {
-           bool useFilter = (filterByVechicleStatus == null) ? false : true;
-           List<string> allCarsLicenseNumbers = new List<string>(); 
-           foreach (KeyValuePair<string, VechicleRecord> vechicle in m_VechicleRecords)
+
+            //TODO: מחקתי את הפונקציה עם החתימה הריקה והורדתי את המשתנה הבוליאני שלך, אם אין פילטר אתה פשוט תקבל null
+            bool useFilter = (filterByVechicleStatus == "NO FILTER") ? false : true;
+            List<string> allCarsLicenseNumbers = new List<string>();
+            foreach (KeyValuePair<string, VechicleRecord> vechicle in m_VechicleRecords)
             {
                 if (!useFilter || vechicle.Value.VehicleStatus.Equals(filterByVechicleStatus))
                 {
@@ -39,7 +41,7 @@ namespace Ex03.GarageLogic
             return allCarsLicenseNumbers;
         }
 
-        public void ChangeVehicleStatus(string i_LicenseNumber, eVehicleStatus i_VechileNewStatus)
+        public void ChangeVehicleStatus(string i_LicenseNumber, string i_VechileNewStatus)
         {
             m_VechicleRecords[i_LicenseNumber].VehicleStatus = i_VechileNewStatus;
         }
@@ -55,7 +57,7 @@ namespace Ex03.GarageLogic
             electricEngine.ChargeBattery(i_ChargeAmmountInMinutes / k_ParseMinuteToHours);
         }
 
-        public object GetVehicleRecord(string licenseNumber)
+        public VechicleRecord GetVehicleRecord(string licenseNumber)
         {
             throw new NotImplementedException();
         }

@@ -37,9 +37,6 @@ namespace Ex03.ConsoleUI
 
         internal static string CheckFilterChoice(string i_UserInput)
         {
-            Console.WriteLine("POPOPO " + i_UserInput);
-            Console.WriteLine(i_UserInput == "" ? "true" : "false");
-            Console.ReadLine();
             return i_UserInput == "" ? k_NoFilter : i_UserInput;
         }
     }

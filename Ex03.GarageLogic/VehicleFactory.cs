@@ -26,6 +26,18 @@ namespace Ex03.GarageLogic
         private const float k_MotorCycleFuelCapacity = 5.5f;
         private const float k_MotorCycleBatteryCapacity = 2.7f;
 
+        public List<String> fieldsToFill = new List<String>()
+        {
+            "License Number",
+            "Model",
+            "Manufacturer",
+            "AirPreasure",
+            "EnergyLevel"
+        };
+
+        //public List<String> AdditionalDetails(string )
+
+
         public static Car CreateCar(
             string i_EngineType, string i_Color, string i_NumOfDoors,
             string i_Model, string i_LicenseNumber, float i_EnergyLevel, string i_Manufacturer, float i_AirPreasure)

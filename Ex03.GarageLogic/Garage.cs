@@ -43,7 +43,8 @@ namespace Ex03.GarageLogic
 
         public void ChangeVehicleStatus(string i_LicenseNumber, string i_VechileNewStatus)
         {
-            m_VechicleRecords[i_LicenseNumber].VehicleStatus = i_VechileNewStatus;
+            eVehicleStatus vechileNewStatusParsedToEnum = (eVehicleStatus)Enum.Parse(typeof(eVehicleStatus), i_VechileNewStatus);
+            m_VechicleRecords[i_LicenseNumber].VehicleStatus = vechileNewStatusParsedToEnum;
         }
 
         public void InflateWheelsToMax(string i_LicenseNumber)

@@ -173,7 +173,7 @@ namespace Ex03.ConsoleUI
         private void ShowRegisteredVehicles()
         {
             string filter = UI.GetFilterInput();
-            UI.ShowAllRegisteredVehicles(m_Garage.getAllLicenseNumbers(filter));
+            UI.ShowAllRegisteredVehicles(m_Garage.GetAllLicenseNumbers(filter));
         }
 
         private void CarCheckIn()

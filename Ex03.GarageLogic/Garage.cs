@@ -18,7 +18,14 @@ namespace Ex03.GarageLogic
             return m_VechicleRecords.ContainsKey(i_LicenseNumber);
         }
 
-        public List<string> getAllLicenseNumbers(string filterByVechicleStatus)
+        public void AddVehicle(string i_LicenseNumber , string i_VehicleOwnerName, string i_VehicleOwnerPhoneNum, string i_VehicleStatus, Vehicle i_Vehicle)
+        {
+            eVehicleStatus vehicleStatusParsedToEnum = (eVehicleStatus)Enum.Parse(typeof(eVehicleStatus), i_VehicleStatus);
+            VechicleRecord vechicleRecord = new VechicleRecord(i_VehicleOwnerName, i_VehicleOwnerPhoneNum, vehicleStatusParsedToEnum, i_Vehicle);
+            m_VechicleRecords.Add(i_LicenseNumber, vechicleRecord);
+        }
+
+        public List<string> GetAllLicenseNumbers(string filterByVechicleStatus)
         {
            bool useFilter = (filterByVechicleStatus == null) ? false : true;
            List<string> allCarsLicenseNumbers = new List<string>(); 
@@ -42,10 +49,10 @@ namespace Ex03.GarageLogic
             m_VechicleRecords[i_LicenseNumber].Vehicle.InflateWheelsToMax();
         }
 
-        public void ChargeVehicle(string licenseNumber, float chargeAmmountInMinutes)
+        public void ChargeVehicle(string i_LicenseNumber, float i_ChargeAmmountInMinutes)
         {
-            ElectricEngine electricEngine = m_VechicleRecords[licenseNumber].Vehicle.Engine as ElectricEngine;
-            electricEngine.ChargeBattery(chargeAmmountInMinutes / k_ParseMinuteToHours);
+            ElectricEngine electricEngine = m_VechicleRecords[i_LicenseNumber].Vehicle.Engine as ElectricEngine;
+            electricEngine.ChargeBattery(i_ChargeAmmountInMinutes / k_ParseMinuteToHours);
         }
 
         public object GetVehicleRecord(string licenseNumber)

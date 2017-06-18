@@ -28,7 +28,6 @@ namespace Ex03.GarageLogic
         public List<string> GetAllLicenseNumbers(string filterByVechicleStatus)
         {
 
-            //TODO: מחקתי את הפונקציה עם החתימה הריקה והורדתי את המשתנה הבוליאני שלך, אם אין פילטר אתה פשוט תקבל null
             bool useFilter = (filterByVechicleStatus == "NO FILTER") ? false : true;
             List<string> allCarsLicenseNumbers = new List<string>();
             foreach (KeyValuePair<string, VechicleRecord> vechicle in m_VechicleRecords)
@@ -58,9 +57,9 @@ namespace Ex03.GarageLogic
             electricEngine.ChargeBattery(i_ChargeAmmountInMinutes / k_ParseMinuteToHours);
         }
 
-        public VechicleRecord GetVehicleRecord(string licenseNumber)
+        public string GetVehicleRecord(string i_LicenseNumber)
         {
-            throw new NotImplementedException();
+            return m_VechicleRecords[i_LicenseNumber].ToString();
         }
 
         public void FuelUpVehicle(string licenseNumber, float fuelAmmountToAdd, string fuelType)
@@ -68,6 +67,16 @@ namespace Ex03.GarageLogic
             FuelEngine fuelEngine = m_VechicleRecords[licenseNumber].Vehicle.Engine as FuelEngine;
             eFuelType fuelTypeParsedToEnum = (eFuelType)Enum.Parse(typeof(eFuelType), fuelType);
             fuelEngine.FillFuel(fuelAmmountToAdd, fuelTypeParsedToEnum);
+        }
+
+        public Vehicle CreateVehicle(Dictionary<string, string> i_FieldsToFill, string i_VehicleType)
+        {
+            return VehicleFactory.CreateVehicle(i_FieldsToFill, i_VehicleType);
+        }
+
+        public List<String> GetVehicleList()
+        {
+            return VehicleFactory.GetVehicleType();
         }
     }
 }

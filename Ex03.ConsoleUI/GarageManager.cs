@@ -34,7 +34,7 @@ namespace Ex03.ConsoleUI
             switch (i_UserAction)
             {
                 case "1":
-                    CarCheckIn();
+                    VehicleCheckIn();
                     break;
                 case "2":
                     ShowRegisteredVehicles();
@@ -176,9 +176,21 @@ namespace Ex03.ConsoleUI
             UI.ShowAllRegisteredVehicles(m_Garage.GetAllLicenseNumbers(filter));
         }
 
-        private void CarCheckIn()
+        private void VehicleCheckIn()
         {
+            string licenseNumber = UI.GetLicenseNumberInput();
+            bool isVehicleListed = m_Garage.IsVehicleListed(licenseNumber);
 
+            if (isVehicleListed)
+            {
+                string vehicleState = UI.GetVehicleStateInput();
+                m_Garage.ChangeVehicleStatus(licenseNumber, vehicleState);
+                UI.ShowVehicleNewState(vehicleState);
+            }
+            else
+            {
+
+            }
         }
     }
 }

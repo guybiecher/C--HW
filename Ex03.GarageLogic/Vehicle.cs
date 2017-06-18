@@ -35,7 +35,10 @@ namespace Ex03.GarageLogic
 
         public void InflateWheelsToMax()
         {
-
+            foreach (Wheel wheel in Wheels)
+            {
+                wheel.InflateWheel(wheel.MaxAirPreasure - wheel.AirPreasure);
+            }
         }
 
 

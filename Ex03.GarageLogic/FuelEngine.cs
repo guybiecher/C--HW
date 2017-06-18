@@ -19,7 +19,7 @@ namespace Ex03.GarageLogic
             m_FuelType = i_FuelType;
         }
 
-        public void FillFuel(int i_AmountFuelToAdd, eFuelType i_FuelType)
+        public void FillFuel(float i_AmountFuelToAdd, eFuelType i_FuelType)
         {
             if (!i_FuelType.Equals(m_FuelType))
             {

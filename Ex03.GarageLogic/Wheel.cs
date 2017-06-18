@@ -9,27 +9,30 @@ namespace Ex03.GarageLogic
     public class Wheel
     {
         private const float k_MinAirPreasure = 0;
-        private string m_Manufacturer;
         private float m_AirPreasure;
-        private float m_MaxAirPreasure;
+        private readonly string m_Manufacturer;
+        private readonly float m_MaxAirPreasure;
+
+        public float MaxAirPreasure { get => m_MaxAirPreasure; }
+        public float AirPreasure { get => m_AirPreasure; set => m_AirPreasure = value; }
 
         public Wheel(string i_manufacturer, float i_airPreasure, float i_maxAirPreasure)
         {
             this.m_Manufacturer = i_manufacturer;
-            this.m_AirPreasure = i_airPreasure;
+            this.AirPreasure = i_airPreasure;
             this.m_MaxAirPreasure = i_maxAirPreasure;
         }
 
         public void InflateWheel(float i_airToAdd)
         {
-            float expectedAirPreasure = m_AirPreasure + i_airToAdd;
-            if (expectedAirPreasure <= m_MaxAirPreasure)
+            float expectedAirPreasure = AirPreasure + i_airToAdd;
+            if (expectedAirPreasure <= MaxAirPreasure)
             {
-                m_AirPreasure = expectedAirPreasure;
+                AirPreasure = expectedAirPreasure;
             }
             else
             {
-                throw new ValueOutOfRangeException(k_MinAirPreasure, m_MaxAirPreasure);
+                throw new ValueOutOfRangeException(k_MinAirPreasure, MaxAirPreasure);
             }
         }
 

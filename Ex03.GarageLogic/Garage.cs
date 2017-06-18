@@ -5,6 +5,7 @@ namespace Ex03.GarageLogic
 {
     public class Garage
     {
+        private const float k_ParseMinuteToHours = 60f;
         private static Dictionary<string, VechicleRecord> m_VechicleRecords = null;
 
         public Garage()
@@ -17,12 +18,20 @@ namespace Ex03.GarageLogic
             return m_VechicleRecords.ContainsKey(i_LicenseNumber);
         }
 
-        public List<string> getAllLicenseNumbers(string filterByVechicleStatus)
+        public void AddVehicle(string i_LicenseNumber, string i_VehicleOwnerName, string i_VehicleOwnerPhoneNum, string i_VehicleStatus, Vehicle i_Vehicle)
         {
+            eVehicleStatus vehicleStatusParsedToEnum = (eVehicleStatus)Enum.Parse(typeof(eVehicleStatus), i_VehicleStatus);
+            VechicleRecord vechicleRecord = new VechicleRecord(i_VehicleOwnerName, i_VehicleOwnerPhoneNum, vehicleStatusParsedToEnum, i_Vehicle);
+            m_VechicleRecords.Add(i_LicenseNumber, vechicleRecord);
+        }
+
+        public List<string> GetAllLicenseNumbers(string filterByVechicleStatus)
+        {
+
             //TODO: מחקתי את הפונקציה עם החתימה הריקה והורדתי את המשתנה הבוליאני שלך, אם אין פילטר אתה פשוט תקבל null
             bool useFilter = (filterByVechicleStatus == "NO FILTER") ? false : true;
-           List<string> allCarsLicenseNumbers = new List<string>(); 
-           foreach (KeyValuePair<string, VechicleRecord> vechicle in m_VechicleRecords)
+            List<string> allCarsLicenseNumbers = new List<string>();
+            foreach (KeyValuePair<string, VechicleRecord> vechicle in m_VechicleRecords)
             {
                 if (!useFilter || vechicle.Value.VehicleStatus.Equals(filterByVechicleStatus))
                 {
@@ -39,12 +48,13 @@ namespace Ex03.GarageLogic
 
         public void InflateWheelsToMax(string i_LicenseNumber)
         {
-            //m_VechicleRecords[i_LicenseNumber].Vehicle.Wheels. 
+            m_VechicleRecords[i_LicenseNumber].Vehicle.InflateWheelsToMax();
         }
 
-        public void ChargeVehicle(string licenseNumber, float chargeAmmountInMinutes)
+        public void ChargeVehicle(string i_LicenseNumber, float i_ChargeAmmountInMinutes)
         {
-            throw new NotImplementedException();
+            ElectricEngine electricEngine = m_VechicleRecords[i_LicenseNumber].Vehicle.Engine as ElectricEngine;
+            electricEngine.ChargeBattery(i_ChargeAmmountInMinutes / k_ParseMinuteToHours);
         }
 
         public VechicleRecord GetVehicleRecord(string licenseNumber)
@@ -54,7 +64,9 @@ namespace Ex03.GarageLogic
 
         public void FuelUpVehicle(string licenseNumber, float fuelAmmountToAdd, string fuelType)
         {
-            throw new NotImplementedException();
+            FuelEngine fuelEngine = m_VechicleRecords[licenseNumber].Vehicle.Engine as FuelEngine;
+            eFuelType fuelTypeParsedToEnum = (eFuelType)Enum.Parse(typeof(eFuelType), fuelType);
+            fuelEngine.FillFuel(fuelAmmountToAdd, fuelTypeParsedToEnum);
         }
     }
 }

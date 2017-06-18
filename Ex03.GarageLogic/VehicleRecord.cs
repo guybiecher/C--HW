@@ -18,7 +18,7 @@ namespace Ex03.GarageLogic
         public string VehicleOwnerPhoneNum => m_VehicleOwnerPhoneNum;
 
         public eVehicleStatus VehicleStatus { get => m_VehicleStatus; set => m_VehicleStatus = value; }
-        public Vehicle Vehicle { get => m_Vehicle;}
+        public Vehicle Vehicle { get => m_Vehicle; }
 
         public VechicleRecord(string i_VehicleOwnerName, string i_VehicleOwnerPhoneNum, eVehicleStatus i_VehicleStatus, Vehicle i_Vehicle)
         {
@@ -39,7 +39,5 @@ namespace Ex03.GarageLogic
                 m_VehicleStatus.ToString(),
                 m_Vehicle.ToString());
         }
-
-
     }
 }

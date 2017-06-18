@@ -14,7 +14,7 @@ namespace Ex03.GarageLogic
 
         }
 
-        public void ChargeBattery (int i_HoursToCharge)
+        public void ChargeBattery (float i_HoursToCharge)
         {
             FillEnergy(i_HoursToCharge);
         }

@@ -42,6 +42,7 @@ namespace Ex03.ConsoleUI
                 validInput = InputUtils.IsValidActionChoice(userInput);
             }
 
+            Console.Clear();
             return userInput;
         }
 
@@ -63,7 +64,7 @@ namespace Ex03.ConsoleUI
 
         internal static void ShowVehicleDetails(VechicleRecord i_Record)
         {
-            Console.WriteLine(i_Record.ToString()); ;
+            Console.WriteLine(i_Record.ToString());
         }
 
         internal static void NoRecordFound()
@@ -73,6 +74,7 @@ namespace Ex03.ConsoleUI
 
         internal static float GetChargeAmmountInput()
         {
+            Console.Clear();
             Console.WriteLine("Please type in the ammount of energy to charge in minutes");
             string userInput = Console.ReadLine();
             float parsedInput;
@@ -90,6 +92,7 @@ namespace Ex03.ConsoleUI
 
         internal static void ShowAllRegisteredVehicles(List<string> i_LicenseNumbersList)
         {
+            Console.Clear();
             Console.WriteLine("Here are the license numbers of the vehicles registered in the garage:");
             foreach (string record in i_LicenseNumbersList)
             {
@@ -99,18 +102,21 @@ namespace Ex03.ConsoleUI
 
         internal static string GetVehicleStateInput()
         {
+            Console.Clear();
             Console.WriteLine("Please type in the vehicles new state");
             return Console.ReadLine();
         }
 
         internal static string GetFuelTypeInput()
         {
+            Console.Clear();
             Console.WriteLine("Please type in a gas type");
             return Console.ReadLine();
         }
 
         internal static float GetFuelAmmountInput()
         {
+            Console.Clear();
             Console.WriteLine("Please type in the ammount of gas to fill");
             string userInput = Console.ReadLine();
             float parsedInput;
@@ -128,6 +134,7 @@ namespace Ex03.ConsoleUI
 
         internal static string GetFilterInput()
         {
+            Console.Clear();
             Console.WriteLine("Please type in a vehicles state to filter by, if you don't wish to filter, simply hit enter with no value typed in");
             string userInput = Console.ReadLine();
 
@@ -141,6 +148,7 @@ namespace Ex03.ConsoleUI
 
         internal static string GetOwnerNameInput()
         {
+            Console.Clear();
             Console.WriteLine("Please type in a your name");
             return Console.ReadLine();
         }

@@ -57,7 +57,7 @@ namespace Ex03.GarageLogic
             electricEngine.ChargeBattery(i_ChargeAmmountInMinutes / k_ParseMinuteToHours);
         }
 
-        public VechicleRecord GetVehicleRecord(string licenseNumber)
+        public VechicleRecord GetVehicleRecord(string i_LicenseNumber)
         {
             throw new NotImplementedException();
         }

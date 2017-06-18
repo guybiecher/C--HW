@@ -20,7 +20,7 @@ namespace Ex03.GarageLogic
         public List<string> getAllLicenseNumbers(string filterByVechicleStatus)
         {
             //TODO: מחקתי את הפונקציה עם החתימה הריקה והורדתי את המשתנה הבוליאני שלך, אם אין פילטר אתה פשוט תקבל null
-            bool useFilter = (filterByVechicleStatus == null) ? false : true;
+            bool useFilter = (filterByVechicleStatus == "NO FILTER") ? false : true;
            List<string> allCarsLicenseNumbers = new List<string>(); 
            foreach (KeyValuePair<string, VechicleRecord> vechicle in m_VechicleRecords)
             {
@@ -32,7 +32,7 @@ namespace Ex03.GarageLogic
             return allCarsLicenseNumbers;
         }
 
-        public void ChangeVehicleStatus(string i_LicenseNumber, eVehicleStatus i_VechileNewStatus)
+        public void ChangeVehicleStatus(string i_LicenseNumber, string i_VechileNewStatus)
         {
             m_VechicleRecords[i_LicenseNumber].VehicleStatus = i_VechileNewStatus;
         }
@@ -47,7 +47,7 @@ namespace Ex03.GarageLogic
             throw new NotImplementedException();
         }
 
-        public object GetVehicleRecord(string licenseNumber)
+        public VechicleRecord GetVehicleRecord(string licenseNumber)
         {
             throw new NotImplementedException();
         }

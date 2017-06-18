@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ex03.GarageLogic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,6 @@ namespace Ex03.ConsoleUI
 {
     internal class UI
     {
-
         public static void Initiate()
         {
             Console.WriteLine("Wellcome to our garage!!");
@@ -61,14 +61,14 @@ namespace Ex03.ConsoleUI
             return userInput;
         }
 
-        internal static void ShowVehicleDetails(object v)
+        internal static void ShowVehicleDetails(VechicleRecord i_Record)
         {
-            throw new NotImplementedException();
+            Console.WriteLine(i_Record.ToString()); ;
         }
 
         internal static void NoRecordFound()
         {
-            Console.WriteLine("No records with that license number found in the garage"); ;
+            Console.WriteLine("No record with that license number found in the garage"); ;
         }
 
         internal static float GetChargeAmmountInput()
@@ -129,7 +129,9 @@ namespace Ex03.ConsoleUI
         internal static string GetFilterInput()
         {
             Console.WriteLine("Please type in a vehicles state to filter by, if you don't wish to filter, simply hit enter with no value typed in");
-            return Console.ReadLine();
+            string userInput = Console.ReadLine();
+
+            return InputUtils.CheckFilterChoice(userInput);
         }
     }
 }

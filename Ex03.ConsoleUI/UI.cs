@@ -11,22 +11,21 @@ namespace Ex03.ConsoleUI
     {
         public static void Initiate()
         {
-            Console.WriteLine("Wellcome to our garage!!");
-            Console.WriteLine("How can I help you today?");
+            Console.WriteLine("Wellcome to our garage!! How can I help you today?\r\n");
         }
 
         public static void ShowGarageActions()
         {
             Console.WriteLine("Please choose one of the actions below by typing the number next to the action:");
             Console.WriteLine(
-                "1. Check in a new vehicle" +
-                "2. Show registered vehicles license numbers" +
-                "3. Change registered vehicle status" +
-                "4. Inflate vehicle wheels to maximum" +
-                "5. Fuel up a gas vehicle" +
-                "6. Charge an electric vehicle" +
-                "7. Show full vehicle details" +
-                "8. Exir garage"
+                "1. Check in a new vehicle\r\n" +
+                "2. Show registered vehicles license numbers\r\n" +
+                "3. Change registered vehicle status\r\n" +
+                "4. Inflate vehicle wheels to maximum\r\n" +
+                "5. Fuel up a gas vehicle\r\n" +
+                "6. Charge an electric vehicle\r\n" +
+                "7. Show full vehicle details\r\n" +
+                "8. Exit garage"
                 );
         }
 
@@ -50,14 +49,6 @@ namespace Ex03.ConsoleUI
         {
             Console.WriteLine("Please type in a license number");
             string userInput = Console.ReadLine();
-            bool isValidInput = InputUtils.IsValidLicenseNumber(userInput);
-
-            while (!isValidInput)
-            {
-                Console.WriteLine("Invalid license number, please try again");
-                userInput = Console.ReadLine();
-                isValidInput = InputUtils.IsValidLicenseNumber(userInput);
-            }
 
             return userInput;
         }
@@ -93,7 +84,7 @@ namespace Ex03.ConsoleUI
         internal static void ShowAllRegisteredVehicles(List<string> i_LicenseNumbersList)
         {
             Console.Clear();
-            Console.WriteLine("Here are the license numbers of the vehicles registered in the garage:");
+            Console.WriteLine("Here are the license numbers of the vehicles registered in the garage:\r\n");
             foreach (string record in i_LicenseNumbersList)
             {
                 Console.WriteLine(record);
@@ -174,6 +165,11 @@ namespace Ex03.ConsoleUI
         {
             Console.WriteLine("Please type in your {0} {1}", i_VehicleType, i_Field);
             return Console.ReadLine();
+        }
+
+        internal static void PrintSuccess()
+        {
+            Console.WriteLine("Success!");
         }
     }
 }

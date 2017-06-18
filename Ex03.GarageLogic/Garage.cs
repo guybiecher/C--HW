@@ -18,21 +18,22 @@ namespace Ex03.GarageLogic
             return m_VechicleRecords.ContainsKey(i_LicenseNumber);
         }
 
-        public void AddVehicle(string i_LicenseNumber, string i_VehicleOwnerName, string i_VehicleOwnerPhoneNum, Vehicle i_Vehicle)
+        public void AddVehicleRecord(string i_LicenseNumber, string i_VehicleOwnerName, string i_VehicleOwnerPhoneNum, Dictionary<string, string> i_FieldsToFill, string i_VehicleType)
         {
-            VechicleRecord vechicleRecord = new VechicleRecord(i_VehicleOwnerName, i_VehicleOwnerPhoneNum, eVehicleStatus.Repair, i_Vehicle);
+            Vehicle vehicle = VehicleFactory.CreateVehicle(i_FieldsToFill, i_VehicleType, i_LicenseNumber);
+            VechicleRecord vechicleRecord = new VechicleRecord(i_VehicleOwnerName, i_VehicleOwnerPhoneNum, eVehicleStatus.Repair, vehicle);
             m_VechicleRecords.Add(i_LicenseNumber, vechicleRecord);
         }
 
         public List<string> GetAllLicenseNumbers(string filterByVechicleStatus)
         {
 
-            //TODO: מחקתי את הפונקציה עם החתימה הריקה והורדתי את המשתנה הבוליאני שלך, אם אין פילטר אתה פשוט תקבל null
             bool useFilter = (filterByVechicleStatus == "NO FILTER") ? false : true;
+
             List<string> allCarsLicenseNumbers = new List<string>();
             foreach (KeyValuePair<string, VechicleRecord> vechicle in m_VechicleRecords)
             {
-                if (!useFilter || vechicle.Value.VehicleStatus.Equals(filterByVechicleStatus))
+                if (!useFilter || vechicle.Value.VehicleStatus.ToString().Equals(filterByVechicleStatus))
                 {
                     allCarsLicenseNumbers.Add(vechicle.Key);
                 }
@@ -53,30 +54,44 @@ namespace Ex03.GarageLogic
 
         public void ChargeVehicle(string i_LicenseNumber, float i_ChargeAmmountInMinutes)
         {
-            ElectricEngine electricEngine = m_VechicleRecords[i_LicenseNumber].Vehicle.Engine as ElectricEngine;
-            electricEngine.ChargeBattery(i_ChargeAmmountInMinutes / k_ParseMinuteToHours);
+            if (m_VechicleRecords[i_LicenseNumber].Vehicle.Engine is ElectricEngine)
+            {
+                ElectricEngine electricEngine = m_VechicleRecords[i_LicenseNumber].Vehicle.Engine as ElectricEngine;
+                electricEngine.ChargeBattery(i_ChargeAmmountInMinutes / k_ParseMinuteToHours);
+            }
+            else
+            {
+                throw new ArgumentException("Trying to charge vechicle with fuel engine");
+            }
         }
 
         public VechicleRecord GetVehicleRecord(string i_LicenseNumber)
         {
-            throw new NotImplementedException();
+            return m_VechicleRecords[i_LicenseNumber];
         }
 
-        public void FuelUpVehicle(string licenseNumber, float fuelAmmountToAdd, string fuelType)
+        public void FuelUpVehicle(string i_LicenseNumber, float fuelAmmountToAdd, string fuelType)
         {
-            FuelEngine fuelEngine = m_VechicleRecords[licenseNumber].Vehicle.Engine as FuelEngine;
-            eFuelType fuelTypeParsedToEnum = (eFuelType)Enum.Parse(typeof(eFuelType), fuelType);
-            fuelEngine.FillFuel(fuelAmmountToAdd, fuelTypeParsedToEnum);
+            if (m_VechicleRecords[i_LicenseNumber].Vehicle.Engine is FuelEngine)
+            {
+                FuelEngine fuelEngine = m_VechicleRecords[i_LicenseNumber].Vehicle.Engine as FuelEngine;
+                eFuelType fuelTypeParsedToEnum = (eFuelType)Enum.Parse(typeof(eFuelType), fuelType);
+                fuelEngine.FillFuel(fuelAmmountToAdd, fuelTypeParsedToEnum);
+            }
+            else
+            {
+                throw new ArgumentException("Trying to fuel up vehicle with electric engine ");
+            }
         }
 
-        public List<string> GetFieldsByVehicleType (string i_VehicleType)
+        public List<String> GetSupportedVehiclesList()
         {
-            throw new NotImplementedException();
+            return VehicleFactory.GetVehicleType();
         }
 
-        public List<string> GetSupportedVehiclesList()
+        public List<string> GetFieldsByVehicleType(string i_VehicleType)
         {
-            throw new NotImplementedException();
+            return VehicleFactory.GetFieldsToFill(i_VehicleType);
         }
     }
 }

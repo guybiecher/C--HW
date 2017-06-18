@@ -32,15 +32,15 @@ namespace Ex03.GarageLogic
             }
             else
             {
-                throw new ValueOutOfRangeException(k_MinAirPreasure, MaxAirPreasure);
+                throw new ValueOutOfRangeException("Air preasure", k_MinAirPreasure, MaxAirPreasure);
             }
         }
 
         public override string ToString()
         {
             return String.Format("Wheel Manufacturer : {0} ," +
-                " Wheel Air Preasure : {1} ," +
-                " Wheel Max Air Preasure {2} ,",
+                "Wheel Air Preasure : {1} ," +
+                "Wheel Max Air Preasure {2} ,",
                 m_Manufacturer,
                 m_AirPreasure,
                 m_MaxAirPreasure

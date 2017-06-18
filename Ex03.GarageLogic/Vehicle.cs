@@ -30,7 +30,14 @@ namespace Ex03.GarageLogic
             List<Wheel> wheels = new List<Wheel>();
             for (int i = 0; i < i_NumberOfWheels; i++)
             {
-                wheels.Add(new Wheel(i_Manufacturer, i_AirPreasure, i_MaxAirPreasure));
+                if (i_AirPreasure > i_MaxAirPreasure)
+                {
+                    throw new ValueOutOfRangeException("Air preasure", 0f, i_MaxAirPreasure);
+                }
+                else
+                {
+                    wheels.Add(new Wheel(i_Manufacturer, i_AirPreasure, i_MaxAirPreasure));
+                }
             }
             return wheels;
         }
@@ -48,12 +55,12 @@ namespace Ex03.GarageLogic
             StringBuilder wheelsString = new StringBuilder();
             foreach (Wheel wheel in m_Wheels)
             {
-                wheelsString.Append("Wheel: " + wheel.ToString() + ",\r\n");
+                wheelsString.Append(" Wheel: " + wheel.ToString() + "\r\n");
             }
             return String.Format("Vehicle Model : {0} ," +
-                " Vehicle License Number : {1} ," +
-                " Vehicle Engine : {2} ," +
-                " Vehicle Wheels : {3} ",
+                "Vehicle License Number : {1} \r\n" +
+                "Vehicle Engine :\r\n {2} \r\n" +
+                "Vehicle Wheels :\r\n{3}",
                 m_Model,
                 m_LicenseNumber,
                 m_Engine.ToString(),

@@ -23,7 +23,7 @@ namespace Ex03.GarageLogic
             float totalFuel = i_AmountOfEnergyToAdd + m_EnergyLevel;
             if (totalFuel >= m_MaxEnergyLevel)
             {
-                throw new ValueOutOfRangeException(k_MinEnergyLevel, m_MaxEnergyLevel);
+                throw new ValueOutOfRangeException("Energy", k_MinEnergyLevel, m_MaxEnergyLevel);
             }
             m_EnergyLevel = totalFuel;
 
@@ -32,7 +32,7 @@ namespace Ex03.GarageLogic
         public override string ToString()
         {
             return String.Format("Engine Energy Level : {0} ," +
-                " Engine Maximum Energy Level : {1} ,",
+                "Engine Maximum Energy Level : {1} ,",
                 m_EnergyLevel,
                 m_MaxEnergyLevel
                 );

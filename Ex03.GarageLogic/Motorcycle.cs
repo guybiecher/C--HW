@@ -15,10 +15,10 @@ namespace Ex03.GarageLogic
     {
         private const int k_NumberOfWheels = 2;
         private eLicenseType m_LicenseType;
-        private int m_EngineCC;
+        private float m_EngineCC;
         private Engine m_Engine;
 
-        public Motorcycle (eLicenseType i_LicenseType,Engine i_Engine , int i_EngineCC, string i_Model, string i_LicenseNumber, List<Wheel> i_Wheels) :
+        public Motorcycle (eLicenseType i_LicenseType,Engine i_Engine , float i_EngineCC, string i_Model, string i_LicenseNumber, List<Wheel> i_Wheels) :
             base(i_Model, i_LicenseNumber, i_Engine, i_Wheels)
         {
             m_LicenseType = i_LicenseType;

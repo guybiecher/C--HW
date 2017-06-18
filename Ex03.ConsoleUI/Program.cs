@@ -10,14 +10,8 @@ namespace Ex03.ConsoleUI
     {
         public static void Main()
         {
-            Dictionary<string, string> test = new Dictionary<string, string>
-            {
-                { "Tal", "1" },
-                { "Liad", "2" }
-            };
-            Console.WriteLine(test.Values);
             GarageManager myGarage = new GarageManager();
-            myGarage.start(); 
+            myGarage.start();
         }
     }
 }

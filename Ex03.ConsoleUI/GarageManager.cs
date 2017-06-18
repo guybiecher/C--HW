@@ -21,9 +21,9 @@ namespace Ex03.ConsoleUI
         public void start()
         {
             UI.Initiate();
-            UI.ShowGarageActions();
             while (!m_ExitGarage)
             {
+                UI.ShowGarageActions();
                 string userAction = UI.GetUserActionInput();
                 manageAction(userAction);
             }
@@ -95,6 +95,11 @@ namespace Ex03.ConsoleUI
                 catch (ValueOutOfRangeException valueOutOfRangeException)
                 {
                     Console.WriteLine(valueOutOfRangeException.Message);
+                    ChargeVehicle();
+                }
+                catch (ArgumentException argumentException)
+                {
+                    Console.WriteLine(argumentException.Message);
                     ChargeVehicle();
                 }
             }
@@ -184,20 +189,41 @@ namespace Ex03.ConsoleUI
             string licenseNumber = UI.GetLicenseNumberInput();
             bool isVehicleListed = m_Garage.IsVehicleListed(licenseNumber);
 
-            if (isVehicleListed)
+            try
             {
-                string vehicleState = UI.GetVehicleStateInput();
-                m_Garage.ChangeVehicleStatus(licenseNumber, vehicleState);
-                UI.ShowVehicleNewState(vehicleState);
+                if (isVehicleListed)
+                {
+                    string vehicleState = UI.GetVehicleStateInput();
+                    m_Garage.ChangeVehicleStatus(licenseNumber, vehicleState);
+                    UI.ShowVehicleNewState(vehicleState);
+                }
+                else
+                {
+
+                    string ownerName = UI.GetOwnerNameInput();
+                    string ownerPhoneNumber = UI.GetOwnerPhoneNumber();
+                    string vehicleType = UI.GetVehicleTypeInput(m_Garage.GetSupportedVehiclesList());
+                    List<string> requiredFieldsList = m_Garage.GetFieldsByVehicleType(vehicleType);
+                    Dictionary<string, string> requiredFieldsMap = GenerateMapAccordingToList(requiredFieldsList, vehicleType);
+                    m_Garage.AddVehicleRecord(licenseNumber, ownerName, ownerPhoneNumber, requiredFieldsMap, vehicleType);
+                    UI.PrintSuccess();
+
+                }
             }
-            else
+            catch (ArgumentException argumentException)
             {
-                string ownerName = UI.GetOwnerNameInput();
-                string ownerPhoneNumber = UI.GetOwnerPhoneNumber();
-                string vehicleType = UI.GetVehicleTypeInput(m_Garage.GetSupportedVehiclesList());
-                List<string> requiredFieldsList = m_Garage.GetFieldsByVehicleType(vehicleType);
-                Dictionary<string, string> requiredFieldsMap = GenerateMapAccordingToList(requiredFieldsList, vehicleType);
-                m_Garage.AddVehicle(licenseNumber, ownerName, ownerPhoneNumber, new Vehicle(requiredFieldsMap, vehicleType));
+                Console.WriteLine(argumentException.Message);
+                VehicleCheckIn();
+            }
+            catch (ValueOutOfRangeException valueOutOfRangeException)
+            {
+                Console.WriteLine(valueOutOfRangeException.Message);
+                VehicleCheckIn();
+            }
+            catch (FormatException formatException)
+            {
+                Console.WriteLine(formatException.Message);
+                VehicleCheckIn();
             }
         }
 

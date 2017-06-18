@@ -2,7 +2,8 @@
 
 namespace Ex03.GarageLogic
 {
-    enum eFuelType {
+    enum eFuelType
+    {
         Soler,
         Octan95,
         Octan96,
@@ -12,6 +13,7 @@ namespace Ex03.GarageLogic
     class FuelEngine : Engine
     {
         private eFuelType m_FuelType;
+        private const string k_EngineType = "Fuel";
 
         public FuelEngine(eFuelType i_FuelType, float i_EnergyLevel, float i_MaxEnergyLevel) :
             base(i_EnergyLevel, i_MaxEnergyLevel)
@@ -29,7 +31,13 @@ namespace Ex03.GarageLogic
             {
                 FillEnergy(i_AmountFuelToAdd);
             }
-           
+
+        }
+
+        public override string ToString()
+        {
+
+            return base.ToString() + String.Format("Engine Type: {0}, Fuel type : {1},", k_EngineType, m_FuelType);
         }
     }
 }
